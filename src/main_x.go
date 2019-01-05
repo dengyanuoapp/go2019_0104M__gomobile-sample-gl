@@ -1,0 +1,1 @@
+../gomobile-text/main_x.go

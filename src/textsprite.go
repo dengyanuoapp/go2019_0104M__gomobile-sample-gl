@@ -1,0 +1,1 @@
+../gomobile-text/textsprite.go
