@@ -1,1 +1,6 @@
-../gomobile-text/main_x.go
+// +build !darwin,!linux
+
+package main
+
+func main() {
+}
