@@ -1,5 +1,3 @@
-// +build darwin linux
-
 package main
 
 import (
@@ -12,13 +10,13 @@ import (
 	//"golang.org/x/mobile/event/paint"
 	//"golang.org/x/mobile/event/size"
 	//"golang.org/x/mobile/event/touch"
-	//"golang.org/x/mobile/exp/gl/glutil"
+	"golang.org/x/mobile/exp/gl/glutil"
 	//"golang.org/x/mobile/exp/sprite/clock"
-	//"golang.org/x/mobile/gl"
+	"golang.org/x/mobile/gl"
 )
 
-func main() {
-	_screenMain() 
-}
-
+func onStart(glctx gl.Context) {
+	images = glutil.NewImages(glctx)
+	game = NewGame()
+} // onStart
 

@@ -1,5 +1,3 @@
-// +build darwin linux
-
 package main
 
 import (
@@ -17,8 +15,8 @@ import (
 	//"golang.org/x/mobile/gl"
 )
 
-func main() {
-	_screenMain() 
-}
-
+func onStop() {
+	images.Release()
+	game = nil
+} // onStop
 

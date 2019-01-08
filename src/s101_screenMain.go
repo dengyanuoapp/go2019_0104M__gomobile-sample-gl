@@ -10,11 +10,16 @@ import (
 	"golang.org/x/mobile/event/paint"
 	"golang.org/x/mobile/event/size"
 	"golang.org/x/mobile/event/touch"
-	//"golang.org/x/mobile/exp/gl/glutil"
+	"golang.org/x/mobile/exp/gl/glutil"
 	//"golang.org/x/mobile/exp/sprite/clock"
 	"golang.org/x/mobile/gl"
 )
 
+var (
+	startTime = time.Now()
+	images    *glutil.Images
+	game      *Game
+)
 
 func _screenMain() {
 	rand.Seed(time.Now().UnixNano())
