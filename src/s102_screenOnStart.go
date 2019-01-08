@@ -16,7 +16,7 @@ import (
 )
 
 func onStart(glctx gl.Context) {
-	images = glutil.NewImages(glctx)
-	game = NewGame()
+	_glImageS = glutil.NewImages(glctx)
+	_GamE = NewGame()
 } // onStart
 

@@ -25,43 +25,43 @@ type Game struct {
 }
 
 func NewGame() *Game {
-	var g Game
-	g.reset()
-	return &g
+	var __g Game
+	__g.reset()
+	return &__g
 }
 
-func (g *Game) reset() {
+func (___g2 *Game) reset() {
 	var err error
-	g.font, err = LoadCustomFont()
+	___g2.font, err = LoadCustomFont()
 	if err != nil {
 		log.Fatalf("error parsing font: %v", err)
 	}
 }
 
-func (g *Game) Touch(down bool) {
+func (___g3 *Game) Touch(down bool) {
 	if down {
-		g.touchCount++
+		___g3.touchCount++
 	}
 }
 
-func (g *Game) Update(now clock.Time) {
+func (___g3 *Game) Update(now clock.Time) {
 	// Compute game states up to now.
-	for ; g.lastCalc < now; g.lastCalc++ {
-		g.calcFrame()
+	for ; ___g3.lastCalc < now; ___g3.lastCalc++ {
+		___g3.calcFrame()
 	}
 }
 
-func (g *Game) calcFrame() {
+func (___g4 *Game) calcFrame() {
 
 }
 
-func (g *Game) _screenRender(sz size.Event, glctx gl.Context, images *glutil.Images) {
+func (___g5 *Game) _screenRender(___sz3 size.Event, ___glCtx3 gl.Context, ___images3 *glutil.Images) {
 	headerHeightPx, footerHeightPx := 100, 100
 
 	header := &_textLineT{
-		text:            fmt.Sprintf("%vpx * %vpx", sz.WidthPx, sz.HeightPx),
-		font:            g.font,
-		widthPx:         sz.WidthPx,
+		text:            fmt.Sprintf("%vpx * %vpx", ___sz3.WidthPx, ___sz3.HeightPx),
+		font:            ___g5.font,
+		widthPx:         ___sz3.WidthPx,
 		heightPx:        headerHeightPx,
 		textColor:       image.White,
 		backgroundColor: image.NewUniform(color.RGBA{0x31, 0xA6, 0xA2, 0xFF}),
@@ -70,41 +70,41 @@ func (g *Game) _screenRender(sz size.Event, glctx gl.Context, images *glutil.Ima
 		yPt:             0,
 		align:           Left,
 	}
-	header._lineRender(sz)
+	header._lineRender(___sz3)
 
 	loading := &_textLineT{
 		placeholder:     "Loading...",
 		text:            "Loading" + strings.Repeat(".", int(time.Now().Unix()%4)),
-		font:            g.font,
-		widthPx:         sz.WidthPx,
-		heightPx:        sz.HeightPx - headerHeightPx - footerHeightPx,
+		font:            ___g5.font,
+		widthPx:         ___sz3.WidthPx,
+		heightPx:        ___sz3.HeightPx - headerHeightPx - footerHeightPx,
 		textColor:       image.White,
 		backgroundColor: image.NewUniform(color.RGBA{0x35, 0x67, 0x99, 0xFF}),
 		fontSize:        96,
 		xPt:             0,
-		yPt:             PxToPt(sz, headerHeightPx),
+		yPt:             PxToPt(___sz3, headerHeightPx),
 	}
-	loading._lineRender(sz)
+	loading._lineRender(___sz3)
 
 	footer := &_textLineT{
-		text:            fmt.Sprintf("%d", g.touchCount),
-		font:            g.font,
-		widthPx:         sz.WidthPx,
+		text:            fmt.Sprintf("%d", ___g5.touchCount),
+		font:            ___g5.font,
+		widthPx:         ___sz3.WidthPx,
 		heightPx:        footerHeightPx,
 		textColor:       image.White,
 		backgroundColor: image.NewUniform(color.RGBA{0x31, 0xA6, 0xA2, 0xFF}),
 		fontSize:        24,
 		xPt:             0,
-		yPt:             PxToPt(sz, sz.HeightPx-footerHeightPx),
+		yPt:             PxToPt(___sz3, ___sz3.HeightPx-footerHeightPx),
 		align:           Right,
 	}
-	footer._lineRender(sz)
+	footer._lineRender(___sz3)
 
 	// TODO: think about using Pt for everything?
 
 }// _screenRender
 
 // PxToPt convert a size from pixels to points (based on screen PixelsPerPt)
-func PxToPt(sz size.Event, sizePx int) geom.Pt {
-	return geom.Pt(float32(sizePx) / sz.PixelsPerPt)
+func PxToPt(___sz2 size.Event, ___sizePx int) geom.Pt {
+	return geom.Pt(float32(___sizePx) / ___sz2.PixelsPerPt)
 }

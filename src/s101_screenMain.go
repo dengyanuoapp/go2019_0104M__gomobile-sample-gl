@@ -16,9 +16,9 @@ import (
 )
 
 var (
-	startTime = time.Now()
-	images    *glutil.Images
-	game      *Game
+	_startTime = time.Now()
+	_glImageS    *glutil.Images
+	_GamE      *Game
 )
 
 func _screenMain() {
@@ -57,19 +57,19 @@ func _screenMain() {
 				if glctx == nil || e.External {
 					continue
 				}
-				onPaint(glctx, sz)
+				_screenOnPaint(glctx, sz)
 				a.Publish()
 				a.Send(paint.Event{}) // keep animating
 			case touch.Event:
 				if down := e.Type == touch.TypeBegin; down || e.Type == touch.TypeEnd {
-					game.Touch(down)
+					_GamE.Touch(down)
 				}
 			case key.Event:
 				if e.Code != key.CodeSpacebar {
 					break
 				}
 				if down := e.Direction == key.DirPress; down || e.Direction == key.DirRelease {
-					game.Touch(down)
+					_GamE.Touch(down)
 				}
 			}
 		}

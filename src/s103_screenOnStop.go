@@ -16,7 +16,7 @@ import (
 )
 
 func onStop() {
-	images.Release()
-	game = nil
+	_glImageS.Release()
+	_GamE = nil
 } // onStop
 

@@ -41,7 +41,7 @@ type _textLineT struct {
 }
 
 func (ts _textLineT) _lineRender(sz size.Event) {
-	sprite := images.NewImage(ts.widthPx, ts.heightPx)
+	sprite := _glImageS.NewImage(ts.widthPx, ts.heightPx)
 
 	// Background color
 	draw.Draw(sprite.RGBA, sprite.RGBA.Bounds(), ts.backgroundColor, image.ZP, draw.Src)
