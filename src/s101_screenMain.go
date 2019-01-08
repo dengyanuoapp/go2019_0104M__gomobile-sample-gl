@@ -24,52 +24,52 @@ var (
 func _screenMain() {
 	rand.Seed(time.Now().UnixNano())
 
-	app.Main(func(a app.App) {
-		var glctx gl.Context
-		var sz size.Event
-		for e := range a.Events() {
-			switch e := a.Filter(e).(type) {
+	app.Main(func(___a7 app.App) {
+		var __glCtx7 gl.Context
+		var __sz7 size.Event
+		for __e7 := range ___a7.Events() {
+			switch __e8 := ___a7.Filter(__e7).(type) {
 			case lifecycle.Event:
-				switch e.Crosses(lifecycle.StageVisible) {
+				switch __e8.Crosses(lifecycle.StageVisible) {
 				case lifecycle.CrossOn:
-					glctx, _ = e.DrawContext.(gl.Context)
-					onStart(glctx)
-					a.Send(paint.Event{})
+					__glCtx7, _ = __e8.DrawContext.(gl.Context)
+					onStart(__glCtx7)
+					___a7.Send(paint.Event{})
 				case lifecycle.CrossOff:
 					onStop()
-					glctx = nil
+					__glCtx7 = nil
 				}
-				// switch e.Crosses(lifecycle.StageFocused) {
+				// switch __e8.Crosses(lifecycle.StageFocused) {
 				// case lifecycle.CrossOn:
-				// 	glctx, _ = e.DrawContext.(gl.Context)
-				// 	onStart(glctx)
-				// 	a.Send(paint.Event{})
+				// 	__glCtx7, _ = __e8.DrawContext.(gl.Context)
+				// 	onStart(__glCtx7)
+				// 	___a7.Send(paint.Event{})
 				// case lifecycle.CrossOff:
-				// 	glctx.ClearColor(1, 1, 1, 1)
-				// 	glctx.Clear(gl.COLOR_BUFFER_BIT)
-				// 	a.Publish()
+				// 	__glCtx7.ClearColor(1, 1, 1, 1)
+				// 	__glCtx7.Clear(gl.COLOR_BUFFER_BIT)
+				// 	___a7.Publish()
 				// 	onStop()
-				// 	glctx = nil
+				// 	__glCtx7 = nil
 				// }
 			case size.Event:
-				sz = e
+				__sz7 = __e8
 			case paint.Event:
-				if glctx == nil || e.External {
+				if __glCtx7 == nil || __e8.External {
 					continue
 				}
-				_screenOnPaint(glctx, sz)
-				a.Publish()
-				a.Send(paint.Event{}) // keep animating
+				_screenOnPaint(__glCtx7, __sz7)
+				___a7.Publish()
+				___a7.Send(paint.Event{}) // keep animating
 			case touch.Event:
-				if down := e.Type == touch.TypeBegin; down || e.Type == touch.TypeEnd {
-					_GamE.Touch(down)
+				if __down7 := __e8.Type == touch.TypeBegin; __down7 || __e8.Type == touch.TypeEnd {
+					_GamE.Touch(__down7)
 				}
 			case key.Event:
-				if e.Code != key.CodeSpacebar {
+				if __e8.Code != key.CodeSpacebar {
 					break
 				}
-				if down := e.Direction == key.DirPress; down || e.Direction == key.DirRelease {
-					_GamE.Touch(down)
+				if __down7 := __e8.Direction == key.DirPress; __down7 || __e8.Direction == key.DirRelease {
+					_GamE.Touch(__down7)
 				}
 			}
 		}
