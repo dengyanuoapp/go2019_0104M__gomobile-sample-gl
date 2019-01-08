@@ -18,7 +18,7 @@ import (
 )
 
 func main() {
-	_screenMain() 
+	_textScreenMain( _appReset , _appPaint ) 
 }
 
 
